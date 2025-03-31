@@ -60,4 +60,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 👤 Author
 
 Federico Certosa Data Analytics Engineer 
-Tor Veragata University project – 2025 
+Tor Vergata University project – 2025 

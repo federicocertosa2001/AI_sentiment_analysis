@@ -1,0 +1,485 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+
+#Progetto Social Media Analytics: "Artificial Intelligence"
+
+-FEDERICO DE LUCA
+-JACOPO MARTINES
+
+
+#INTRODUZIONE:
+
+L'intelligenza artificiale (AI) rappresenta una delle tecnologie più
+rivoluzionarie e trasformative del nostro tempo, capace di ridefinire
+modelli di business, processi produttivi e strategie aziendali. Questo
+lavoro si propone di analizzare come le imprese europee, suddivise per
+classi dimensionali, stiano adottando l'AI e quali fattori ne
+influenzino l'adozione.
+
+Il primo capitolo fornisce un quadro teorico iniziale, introducendo lo
+stato dell'arte sull'intelligenza artificiale e analizzando i principali
+aspetti tecnologici, economici e sociali legati alla sua implementazione
+nelle aziende. Si affrontano sia le opportunità che le sfide connesse
+all'utilizzo dell'AI, delineando un contesto utile per le successive
+analisi.
+
+Il secondo capitolo descrive l'adozione dell'AI nelle imprese europee
+attraverso un'analisi basata su dati Eurostat. In particolare, si
+esamina la diffusione delle tecnologie di AI in base alle classi
+dimensionali delle aziende, evidenziando barriere come la mancanza di
+chiarezza sulle implicazioni legali. L'analisi descrittiva è supportata
+da grafici che illustrano tendenze e gap tecnologici tra i paesi
+dell'Unione Europea.
+
+Il terzo capitolo si concentra sull'analisi testuale di articoli
+accademici e contributi scientifici presenti in letteratura, esplorando
+come l'AI venga discussa in termini di applicazioni, impatti e
+prospettive future. Attraverso questa analisi, si cerca di estrapolare
+temi ricorrenti e modelli interpretativi utili per comprendere le
+dinamiche in atto.
+
+Infine, il quarto capitolo presenta un'analisi di commenti e opinioni
+raccolti tramite scraping su Twitter (X), effettuato con l'utilizzo di
+API specifiche. Questa parte del lavoro si propone di esplorare le
+percezioni degli utenti, identificando sentimenti prevalenti, trend
+emergenti e differenze di opinione sul tema dell'AI, con un focus sui
+commenti rilevanti per il contesto europeo.
+
+L'obiettivo complessivo è fornire una visione integrata dell'adozione
+dell'intelligenza artificiale nelle aziende europee, combinando analisi
+descrittive e testuali con dati provenienti sia da fonti ufficiali sia
+dai social media. Questo approccio multidimensionale mira a offrire
+spunti di riflessione per favorire un'adozione più inclusiva e
+consapevole dell'AI, contribuendo a ridurre le disuguaglianze tra
+operatori economici di diverse dimensioni.
+
+#CAPITOLO 1: Origini e sviluppo dell'intelligenza artificiale
+
+Il termine "intelligenza artificiale" (IA) è stato coniato nel 1956
+durante il celebre workshop di Dartmouth, considerato il punto di
+partenza ufficiale di questa disciplina. Il concetto, tuttavia, trae le
+sue origini da precedenti riflessioni filosofiche e scientifiche
+sull'automazione e sulla capacità delle macchine di imitare
+l'intelligenza umana. Tra i precursori si possono citare Alan Turing,
+che nel 1950 introdusse il celebre "Test di Turing", e John McCarthy,
+che contribuì alla formalizzazione dell'IA come campo accademico.
+
+Negli anni '60 e '70, l'IA ha registrato significativi progressi grazie
+all'elaborazione di algoritmi di ricerca e al primo sviluppo di
+linguaggi di programmazione come Lisp. Tuttavia, il periodo conosciuto
+come "AI Winter" negli anni '80 ha rallentato gli investimenti nel
+settore, a causa di aspettative non soddisfatte.
+
+Con l'avvento di hardware più potenti e l'accesso a grandi quantità di
+dati negli anni 2000, l'IA ha vissuto una nuova era di crescita.
+Tecnologie come il machine learning, il deep learning e le reti neurali
+convoluzionali hanno rivoluzionato il settore, con applicazioni che
+spaziano dalla medicina alla finanza, dai trasporti alla sicurezza
+informatica.
+
+Attualmente, l'intelligenza artificiale rappresenta una delle tecnologie
+più promettenti del nostro tempo, con progressi costanti verso sistemi
+sempre più autonomi e intelligenti. Nonostante le straordinarie
+opportunità offerte, permangono numerose sfide, tra cui questioni
+etiche, bias algoritmici e l'impatto sull'occupazione.
+
+#BIBLIOGRAFIA
+
+-Simon, H. (2009) Neural networks and learning machines.
+
+-Witten, I. H., Frank, E., Hall, M. A., Pal, C. J., & Data, M. (2005)
+Practical machine learning tools and techniques.
+
+-Jiawei, H., & Micheline, K. (2006) Data mining: concepts and
+techniques.
+
+-Sharma, A., and Pandey, H. (2020) Big Data and Analytics in Industry
+4.0, Springer Nature Switzerland AG
+
+#CAPITOLO 2: ANALISI DESCRITTIVA -Introduzione al dataset
+
+L'analisi descrittiva condotta si basa sui dati Eurostat disponibili
+tramite il dataset "Artificial Intelligence by size class of
+enterprise", il quale offre una panoramica sull'utilizzo
+dell'intelligenza artificiale da parte delle imprese europee, suddivise
+per classe dimensionale e per stato. Le aziende sono classificate in tre
+categorie:
+
+Piccole (10-49 dipendenti) 
+Medie (50-249 dipendenti) 
+Grandi (oltre 250 dipendenti). 
+
+Sono state escluse dall'analisi le aziende dei settori
+agricolo, ittico e minerario, nonché il settore finanziario. L'unità di
+misura utilizzata è la percentuale di imprese. Le informazioni sono
+relative a diverse domande specifiche, per un totale di 77 indicatori.
+
+Online data code: isoc_eb_ai
+
+#2.1 Analisi del primo sotto-dataset: Imprese che utilizzano AI (classe 10-49 dipendenti) 
+
+Information society indicator: Enterprises don't use any AI system (of E_CHTB, E_BDAML, E_BDANL, E_RBTS). 
+
+[E_BDAML] Analyse big data internally using machine learning [E_BDANL]
+Analyse big data internally using natural language processing, natural
+language generation or speech recognition [E_RBTS] Use service robots
+[E_CHTB] Enterprises with a chat service where a chatbot or a virtual
+agent replies to customers [E_AI_0] Enterprises don't use any AI system
+(of E_CHTB, E_BDAML, E_BDANL, E_RBTS)
+
+Unit of measure: Percentage of enterprises
+
+Nel primo sotto-dataset analizzato, l'indicatore che avevamo riguardava le piccole
+imprese (10-49 dipendenti) che non utilizzano alcun sistema di intelligenza artificiale nel 2020.
+Quello che abbiamo utilizzato però è stato il suo complemento a 100 ossia le imprese di questa dimensione che utilizzano almeno una delle precedneti tecnologie AI. 
+
+Il dataset è stato preprocessato e visualizzato tramite un barplot che rappresenta la distribuzione delle percentuali per ogni nazione europea. 
+
+Il tutto è stato ripetuto per le aziende aventi classi di dimensioni diverse.
+
+
+```{r, fig.width=8, fig.height=6} 
+
+library(readxl)
+library(DescTools)
+dataset_10_49_E_AI_0 <- read_excel("isoc_eb_ai__custom_14777017_page_spreadsheet.xlsx")
+dataset_10_49_E_AI_0 <- dataset_10_49_E_AI_0[-1,]
+dataset_10_49_E_AI_0 <- dataset_10_49_E_AI_0[,1:2]
+dataset_10_49_E_AI_0$'2020' <- as.numeric(dataset_10_49_E_AI_0$'2020')
+dataset_10_49_E_AI_0$"2020_AI_SI" <- 100 - dataset_10_49_E_AI_0$'2020'
+barplot(
+  height = dataset_10_49_E_AI_0$'2020_AI_SI',
+  space = 1.5, 
+  names.arg = dataset_10_49_E_AI_0$'TIME',
+  col = "steelblue",
+  main = "Percentuale di aziende che usano AI per nazione (classe: 10-49 dipendenti)",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+```
+
+#2.1.1 Analisi del secondo sotto-dataset: Imprese che utilizzano AI (classe 50-249 dipendenti)
+
+
+```{r, fig.width=8, fig.height=6 }
+library(readxl)
+dataset_50_249_E_AI_0 <- read_excel("isoc_eb_ai__custom_14777150_page_spreadsheet.xlsx")
+dataset_50_249_E_AI_0 <- dataset_50_249_E_AI_0[-1,]
+dataset_50_249_E_AI_0 <- dataset_50_249_E_AI_0[,1:2]
+dataset_50_249_E_AI_0$'2020' <- as.numeric(dataset_50_249_E_AI_0$'2020')
+dataset_50_249_E_AI_0$"2020_AI_SI" <- 100 - dataset_50_249_E_AI_0$'2020'
+barplot(
+  height = dataset_50_249_E_AI_0$'2020_AI_SI',
+  space = 1.5, 
+  names.arg = dataset_50_249_E_AI_0$'TIME',
+  col = "red",
+  main = "Percentuale di aziende che usano AI per nazione (classe: 50-249 dipendenti)",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+```
+
+#2.1.2 Analisi del terzo sotto-dataset: Imprese che  utilizzano AI (oltre 250 dipendenti)
+
+```{r, fig.width=8, fig.height=6}
+dataset_250_E_AI_0 <- read_excel("E_AI_0_250.xlsx")
+dataset_250_E_AI_0 <- dataset_250_E_AI_0[-1,]
+dataset_250_E_AI_0 <- dataset_250_E_AI_0[,1:2]
+dataset_250_E_AI_0$'2020' <- as.numeric(dataset_250_E_AI_0$'2020')
+dataset_250_E_AI_0$"2020_AI_SI" <- 100 - dataset_250_E_AI_0$'2020'
+barplot(
+  height = dataset_250_E_AI_0 $'2020_AI_SI',
+  space = 1.5, 
+  names.arg = dataset_250_E_AI_0 $'TIME',
+  col = "green",
+  main = "Percentuale di aziende che usano AI per nazione (classe: 250 dipendenti)",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+```
+
+
+
+
+
+#2.4 Analisi Specifica: Imprese che Utilizzano Tecnologie di AI per Ricerca, Sviluppo e Innovazione 
+
+#E_AI_PRDI
+
+Un ulteriore approfondimento è stato condotto sulle imprese che
+utilizzano tecnologie di intelligenza artificiale per attività di
+ricerca e sviluppo (R&D) o innovazione (domanda E_AI_PRDI). L'analisi
+include i dati disponibili per gli anni 2023 e 2024, considerando tutte
+le aziende di vari paesi. Sono stati generati barplot annuali per
+evidenziare le variazioni tra i diversi Stati. Inoltre, è stata fornita
+una descrizione statistica riassuntiva per esplorare le tendenze e le
+differenze nell'adozione dell'AI in ambito R&D e innovazione tra le
+varie nazioni.
+
+```{r,fig.width=8, fig.height=6}
+
+dataset_E_AI_PRDI <- read_excel("isoc_eb_ai_E_AI_PRDI.xlsx")
+
+
+dataset_E_AI_PRDI[, c(2, 3)] <- lapply(dataset_E_AI_PRDI[, c(2, 3)], as.numeric)
+
+dataset_E_AI_PRDI <- dataset_E_AI_PRDI[-1,]
+colnames(dataset_E_AI_PRDI)[1] <- "GEO_label" 
+
+
+barplot(
+  height = dataset_E_AI_PRDI$'2023',
+  names.arg = dataset_E_AI_PRDI$GEO_label,
+  col = "red",
+  main = "Percentuale di aziende che usano l'AI per la ricerca e sviluppo 2023",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+barplot(
+  height = dataset_E_AI_PRDI$'2024',
+  names.arg = dataset_E_AI_PRDI$GEO_label,
+  col = "steelblue",
+  main = "Percentuale di aziende che usano l'AI per la ricerca e sviluppo 2024",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+Desc(dataset_E_AI_PRDI[,2:3])
+```
+
+#2.5 Analisi Specifica: Imprese che Utilizzano Tecnologie di AI per i Processi Produttivi #E_AI_PPP Un ulteriore approfondimento è stato
+condotto sulle imprese che utilizzano tecnologie di intelligenza
+artificiale per i processi produttivi (domanda E_AI_PPP). L'analisi
+include i dati disponibili per gli anni 2021, 2023 e 2024, considerando
+aziende di diverse dimensioni e paesi. Sono stati generati barplot
+annuali per evidenziare le variazioni nell'adozione dell'AI nei processi
+produttivi tra i vari Stati. Inoltre, è stata fornita una descrizione
+statistica riassuntiva per analizzare l'evoluzione dell'uso delle
+tecnologie di AI nei settori produttivi nel corso degli anni.
+
+```{r,fig.width=8, fig.height=6}
+
+dataset_E_AI_PPP <- read_excel("isoc_eb_ai_E_AI_PPP.xlsx")
+
+dataset_E_AI_PPP[, c(2, 3,4)] <- lapply(dataset_E_AI_PPP[, c(2, 3,4)], as.numeric)
+
+dataset_E_AI_PPP <- dataset_E_AI_PPP[-1,]
+colnames(dataset_E_AI_PPP)[1] <- "GEO_label" 
+
+
+barplot(
+  height = dataset_E_AI_PPP$'2021',
+  names.arg = dataset_E_AI_PPP$GEO_label,
+  col = "green",
+  main = "Percentuale di aziende che usano l'AI per production process 2021",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+
+barplot(
+  height = dataset_E_AI_PPP$'2023',
+  names.arg = dataset_E_AI_PPP$GEO_label,
+  col = "red",
+  main = "Percentuale di aziende che usano l'AI per production process 2023",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+barplot(
+  height = dataset_E_AI_PPP$'2024',
+  names.arg = dataset_E_AI_PPP$GEO_label,
+  col = "steelblue",
+  main = "Percentuale di aziende che usano l'AI per production process 2024",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+Desc(dataset_E_AI_PPP[,2:4])
+
+```
+
+#2.6 Analisi Specifica: Imprese che Utilizzano Tecnologie di AI per Marketing e Vendite 
+
+#E_AI_PMS 
+Un ulteriore approfondimento è stato
+condotto sulle imprese che utilizzano tecnologie di intelligenza
+artificiale per attività di marketing e vendite (domanda E_AI_PMS).
+L'analisi si basa sui dati disponibili per gli anni 2021, 2023 e 2024,
+considerando aziende di diverse dimensioni e paesi. Sono stati generati
+barplot annuali per mettere in evidenza le variazioni nell'adozione
+dell'AI per marketing e vendite nei vari Stati. Inoltre, è stata fornita
+una descrizione statistica riassuntiva per esaminare l'evoluzione
+dell'uso delle tecnologie AI nelle attività di marketing e vendite nel
+corso del tempo.
+
+```{r,fig.width=8, fig.height=6}
+dataset_E_AI_PMS <- read_excel("isoc_eb_ai_E_AI_PMS.xlsx")
+
+
+
+dataset_E_AI_PMS[, c(2, 3,4)] <- lapply(dataset_E_AI_PMS[, c(2, 3,4)], as.numeric)
+
+dataset_E_AI_PMS <- dataset_E_AI_PMS[-1,]
+colnames(dataset_E_AI_PMS)[1] <- "GEO_label" 
+
+
+barplot(
+  height = dataset_E_AI_PMS$'2021',
+  names.arg = dataset_E_AI_PMS$GEO_label,
+  col = "green",
+  main = "Percentuale di aziende che usano l'AI per marketing and sales 2021",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+
+barplot(
+  height = dataset_E_AI_PMS$'2023',
+  names.arg = dataset_E_AI_PMS$GEO_label,
+  col = "red",
+  main = "Percentuale di aziende che usano l'AI per marketing and sales 2023",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+barplot(
+  height = dataset_E_AI_PMS$'2024',
+  names.arg = dataset_E_AI_PMS$GEO_label,
+  col = "steelblue",
+  main = "Percentuale di aziende che usano l'AI per marketing and sales 2024",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+Desc(dataset_E_AI_PMS[,2:4])
+
+```
+
+
+
+#2.8 Analisi Specifica: Imprese che Usano AI per la Logistica
+
+Un ulteriore approfondimento è stato condotto sulle imprese che
+utilizzano tecnologie di intelligenza artificiale per migliorare la
+logistica (domanda E_AI_PLOG). L'analisi si basa sui dati disponibili
+per gli anni 2021, 2023 e 2024 e riguarda tutte le aziende con più di 10
+dipendenti. Sono stati generati barplot annuali per evidenziare le
+variazioni nell'adozione dell'AI per la logistica tra i diversi paesi.
+Inoltre, è stata fornita una descrizione statistica riassuntiva per
+esaminare l'evoluzione dell'uso dell'AI in questo ambito e le differenze
+tra i vari stati nel tempo.
+
+```{r,fig.width=8, fig.height=6}
+dataset_E_AI_PLOG <- read_excel("ISOC_E_AI_PLOG.xlsx")
+
+
+
+dataset_E_AI_PLOG[, c(2, 3,4)] <- lapply(dataset_E_AI_PLOG[, c(2, 3,4)], as.numeric)
+
+dataset_E_AI_PLOG <- dataset_E_AI_PLOG[-1,]
+colnames(dataset_E_AI_PLOG)[1] <- "GEO_label" 
+
+
+barplot(
+  height = dataset_E_AI_PLOG$'2021',
+  names.arg = dataset_E_AI_PLOG$GEO_label,
+  col = "green",
+  main = "Percentuale di aziende che usano l'AI per la logistica 2021",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+
+barplot(
+  height = dataset_E_AI_PLOG$'2023',
+  names.arg = dataset_E_AI_PLOG$GEO_label,
+  col = "red",
+  main = "Percentuale di aziende che usano l'AI per la logistica 2023",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+barplot(
+  height = dataset_E_AI_PLOG$'2024',
+  names.arg = dataset_E_AI_PLOG$GEO_label,
+  col = "steelblue",
+  main = "Percentuale di aziende che usano l'AI per la logistica 2024",
+  ylab = "Percentuale di aziende",
+  las = 2 # Ruota le etichette sull'asse X
+)
+
+Desc(dataset_E_AI_PLOG[,2:4])
+```
+
+#2.9 Analisi correlazione
+
+Si vuole studiare l'associazione tra il complemento dell'indicatore
+E_AI_0 , cioè l'utilizzo di determinate declinazioni dell'inteligenza
+artificiale, e la dimensione delle imprese per numero di dipendenti. Per
+effettuare l'analisi, è stata resa la variabile size_emp (rappresentante
+la classe di numero di dipendenti) un fattore (variabile ordinale) con
+tre livelli: livello 1: dai 10 ai 49 dip. livello 2: dai 50 ai 249 dip
+livello 3: più di 250 dipendenti
+
+Sulla misura di associazione da calcolare, si è considerato che non è
+appropriato utilizzare la correlazione di Pearson se una delle variabili
+è di tipo fattoriale (categorica) e l'altra è numerica. La correlazione
+di Pearson, infatti, si basa sul concetto di relazione lineare e
+richiede che entrambe le variabili siano quantitative, cioè misurate su
+scale numeriche. In questo caso risultava impossibile connotare i valori
+della variabile fattoriale n termini di distanza tra loro. Inoltre, per
+valutare la significatività statistica del coefficiente attraverso test
+parametrici, occorrerebbe che le variabili fossero distribuite
+normalmente, ciò non può essere verificato dalla variabile di tipo
+fattoriale. Tuttavia, essendo la variabile fattoriale di tipo ordinale,
+è possibile utilizzare l'indice di correlazione di spearman, il quale
+non impone alcuna assunzione sulla distribuzione delle vaiabili che si
+vogliono analizzare.
+
+
+
+```{r}
+library(readxl)
+
+dataset_E_AI_0_3dipclasses <- read_excel("E_AI_0_3dipclasses.xlsx")
+
+dataset_E_AI_0_3dipclasses <- dataset_E_AI_0_3dipclasses[,-5]
+
+dataset_E_AI_0_3dipclasses$'size_emp' <- factor(dataset_E_AI_0_3dipclasses$'size_emp', levels = c("10-49", "50-249", "GE250"))
+
+#rendere numerica la variabile contenente i valori osservati
+dataset_E_AI_0_3dipclasses$'OBS_VALUE' <- as.numeric(dataset_E_AI_0_3dipclasses$'OBS_VALUE')
+
+#complemento a 100
+dataset_E_AI_0_3dipclasses$'%AI' <- 100 - dataset_E_AI_0_3dipclasses$OBS_VALUE
+
+
+correlazione <- cor(as.numeric(dataset_E_AI_0_3dipclasses$'size_emp'), 
+                    dataset_E_AI_0_3dipclasses$'%AI', 
+                    method = "spearman", 
+                    use = "complete.obs") #trascura righe in cui non sono presenti dati
+
+# Stampa il risultato
+
+print(correlazione)
+
+```
+
+Il valore del coefficiente ρ=0.705999, positivo e vicino ad 1,
+suggerisce la presenza di associazione tra le variabili indagate, in
+particolare, testimonia che le variabili sono monotonicamente legate
+(cioè una aumenta costantemente rispetto all'altra, anche in modo non
+lineare). Dal punto di vista qualitativo ciò significa che le imprese di
+grandi dimensioni in Europa, utilizzano maggiormente l'intelligenza
+artificiale; ciò potrebbe essere dovuto ala maggiore facilità con cui
+possono accedervi o alla presenza in esse di expertise in grado di
+utilizzare tale tecnologia.
+
+

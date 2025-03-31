@@ -1,0 +1,286 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+#CAPITOLO 5: ANALISI COMMENTI SU X 
+
+Carichiamo il primo dataset: APIFY_1
+
+La polarità di un commento su Twitter (o di qualsiasi testo) si
+riferisce alla sua inclinazione emotiva, ovvero se il contenuto è
+positivo, negativo o neutro. È una metrica fondamentale per l'analisi
+del sentiment, utile per comprendere le opinioni degli utenti su un
+argomento o prodotto.
+
+```{r}
+library(quanteda)
+library(qdap)
+library(readxl)
+tweet_df <- read_excel("DATASET_PULITO.xlsx")
+polarity(tweet_df$text)
+```
+
+Un valore di polarità di 0.163 indica una leggera tendenza positiva nei
+commenti analizzati su Twitter riguardo all'intelligenza artificiale.
+Questo suggerisce che, sebbene ci siano sia opinioni entusiastiche che
+timorose, il sentiment complessivo tende verso un atteggiamento più
+favorevole che negativo.
+
+L'entusiasmo potrebbe derivare da commenti che elogiano i progressi
+dell'IA, la sua capacità di automatizzare compiti complessi e le
+opportunità che offre in diversi settori, come sanità, finanza e
+creatività. D'altro canto, il timore è spesso legato alle questioni di
+etica, privacy, perdita di posti di lavoro e possibili usi impropri
+della tecnologia.
+
+```{r}
+library(quanteda)
+mycorp <- corpus(tweet_df$text)
+summary(mycorp)
+```
+
+```{r}
+toks <- tokens(mycorp)
+mycorp1<-dfm(toks, tolower=T)
+tag_dfm <- dfm_select(mycorp1, pattern = ("#*"))
+```
+
+L'analisi della rete di hashtag evidenzia le connessioni tra i termini
+più frequenti nei tweet riguardanti l'intelligenza artificiale. Il nodo
+centrale è #artificialintelligence, che funge da punto di snodo tra due
+cluster principali.
+
+-Cluster tecnologico e di business: include hashtag come #ai,
+#machinelearning, #technews, #digitaltransformation, #robotics,
+#cybersecurity, che indicano discussioni su innovazione, automazione e
+impatti sul lavoro e sulla società.
+
+-Cluster legato a criptovalute e trend emergenti: comprende #memecoins,
+#aifantoken, #mrmemecoins, suggerendo un'intersezione tra IA e il mondo
+delle criptovalute e dei token digitali.
+
+-Cluster gaming e creatività: include hashtag come #indiegame, #gamedev,
+#pixelart, #nindie, suggerendo un utilizzo dell'IA in ambiti creativi e
+videoludici.
+
+```{r}
+library(quanteda.textplots)
+# Seleziona solo gli hashtag più frequenti (es. quelli che appaiono almeno 5 volte)
+tag_dfm <- dfm_trim(tag_dfm, min_termfreq = 5)
+
+# Crea la matrice di co-occorrenza
+tag_fcm <- fcm(tag_dfm)
+
+# Filtra per i top hashtag che vuoi visualizzare
+top_terms <- names(topfeatures(tag_dfm, 50))  # Mantieni solo i 50 hashtag più frequenti
+topgat_fcm <- fcm_select(tag_fcm, pattern = top_terms)
+
+# Plotta la rete con le nuove impostazioni
+textplot_network(topgat_fcm, min_freq = 0.3, edge_alpha = 0.6, edge_size = 3)
+
+```
+
+#SENTIMENT ANALYSIS
+
+L'analisi del sentiment è il processo automatizzato che esamina un testo
+per determinare l'opinione o l'emozione espressa dall'autore. Questo
+processo può essere visto come una classificazione binaria (positivo o
+negativo) o in classi multiple (es.felicità, tristezza,rabbia).
+
+La libreria VADER (Valence Aware Dictionary and Sentiment Reasoner) è un
+algoritmo di analisi del sentiment progettato specificamente per testi
+brevi, come i tweet. Basato su un dizionario lessicale, VADER assegna
+punteggi di intensità alle parole per determinare il tono complessivo di
+un testo.
+
+```{r}
+library(vader)
+sentiment_results <- vader_df(tweet_df$text)
+head(sentiment_results)
+```
+
+La funzione restituirà, per ogni tweet, diversi punteggi:
+
+compound: Un punteggio complessivo compreso tra -1 (molto negativo) e 1
+(molto positivo) pos: La percentuale di sentiment positivo
+
+neu: La percentuale di sentiment neutro
+
+neg: La percentuale di sentiment negativo
+
+Grafichiamo i risultati ottenuti
+
+```{r}
+library(ggplot2)
+
+ggplot(sentiment_results, aes(x = compound)) +
+  geom_histogram(binwidth = 0.1, fill = "skyblue", color = "black") +
+  labs(title = "Distribuzione dei punteggi di sentiment (compound)",
+       x = "Punteggio Compound",
+       y = "Frequenza")
+```
+
+L'istogramma rappresenta la distribuzione dei punteggi compound ottenuti
+con la libreria VADER per l'analisi del sentiment. La maggior parte dei
+valori si concentra intorno a punteggi neutri, con una leggera
+prevalenza di sentimenti positivi, evidenziata dalla presenza di
+punteggi compound intorno a 0.7-0.8. Questo suggerisce che il dataset
+analizzato contiene principalmente testi con un tono equilibrato o
+leggermente positivo, mentre le valutazioni estremamente negative o
+fortemente positive sono meno frequenti.
+
+Grafichiamo ora la frequenza dei commenti positivi
+
+```{r}
+ggplot(sentiment_results, aes(x = pos)) +
+  geom_histogram(binwidth = 0.05, fill = "lightgreen", color = "black") +
+  labs(title = "Distribuzione dei punteggi positivi",
+       x = "Punteggio Positivo",
+       y = "Frequenza")
+
+```
+
+#CLUSTERING: ALGORITMO DI REINERT
+
+In questa sezione è stato applicato un algoritmo di clustering
+(algoritmo di Reinert) per raggrupare tweet simili in insiemi distinti
+detti cluster. La tipologia di clustering applicato è un clustering
+gerarchico che costruisce una struttura ad albero (dendogramma) che
+mostra le relazioni tra i punti dati a livelli diversi. Non è richiesto
+di specificare il numero di cluster in anticipo. In particolare è un
+clustering gerarchico di tipo divisivo in cui si parte da un unico
+cluster contenente tutti i punti e lo si suddivide iterativamente per
+ottenere cluster più piccoli. È basati sul calcolo del Chi-quadrato,
+l'obiettivo è associare le unità che hanno valori di Chi-quadrato più
+alto, cioè quelle maggiormente correlate tra loro.
+
+L'algoritmo di Reinert è un importante approccio gerarchico divisivo che
+si distingue per la sua applicazione nell'analisi dei dati documentali.
+La caratteristica distintiva del metodo è che lavora con dati
+qualitativi che sebbene siano di natura testuale non dovrebbero essere
+decontestualizzati, poichè questo aumenterebbe l'ambiguità. In altre
+parole, mentre si crea un cluster si rischia di perdere il contesto che
+dà significato al dato. Questo principio si ricollega al problema
+dell'encoding nei modelli di deep learning.
+
+```{r}
+library(quanteda)
+library(rainette)
+
+# Creazione del corpus
+mycorp <- corpus(tweet_df, text_field = "text")
+
+# Creazione dei tokens per i tweet testuali
+tok_text <- tokens(mycorp, remove_punct = TRUE)
+tok_text <- tokens_tolower(tok_text)
+tok_text <- tokens_remove(tok_text, stopwords("en"))
+tok_text <- tokens_remove(tok_text, "#*")  # Rimuove gli hashtag
+tok_text <- tokens_remove(tok_text, "@*")  # Rimuove le chiocciole
+tok_text <- tokens_remove(tok_text, pattern = "http[s]?://\\S+", valuetype = "regex")
+
+
+# Creazione della dfm per i tweet testuali
+dtm_text <- dfm(tok_text)
+dtm_text <- dfm_trim(dtm_text, min_docfreq = 10)
+
+
+# Clustering con rainette per i tweet testuali
+res_text <- rainette(dtm_text, k = 5)
+
+# Esplorazione e visualizzazione
+rainette_explor(res_text, dtm_text, mycorp)
+rainette_plot(res_text, dtm_text, k = 5, n_terms = 20, free_scales = FALSE, measure = "chi2", show_negative = FALSE, text_size = 12)
+
+# Ottenere i gruppi
+groups_text <- cutree_rainette(res_text, k = 5)
+
+# Creazione dei tokens solo per gli hashtag
+tok_text_hastag <- tokens(mycorp, remove_punct = TRUE)
+tok_text_hastag <- tokens_tolower(tok_text_hastag)
+tok_text_hastag <- tokens_remove(tok_text_hastag, stopwords("en"))
+tok_hashtag <- tokens_select(tok_text_hastag, pattern = "#*", selection = "keep")
+
+# Creazione della dfm per gli hashtag
+dtm_hashtag <- dfm(tok_hashtag)
+dtm_hashtag <- dfm_trim(dtm_hashtag, min_docfreq = 10)
+
+# Clustering con rainette sugli hashtag
+res_hashtag <- rainette(dtm_hashtag, k = 5)
+
+# Esplorazione e visualizzazione
+rainette_explor(res_hashtag, dtm_hashtag, mycorp)
+rainette_plot(res_hashtag, dtm_hashtag, k = 5, n_terms = 20, free_scales = FALSE, measure = "chi2", show_negative = FALSE, text_size = 12)
+
+# Ottenere i gruppi
+groups_hashtag <- cutree_rainette(res_hashtag, k = 5)
+
+```
+
+L'analisi di Reinert è stata applicata ai testi dei tweet e,
+separatamente, agli hashtag contenuti nei tweet, tutti incentrati sul
+tema dell'intelligenza artificiale. Questo ha permesso di individuare i
+principali cluster semantici emergenti.
+
+Nel clustering basato sui testi, sono stati identificati quattro gruppi:
+
+Cluster 1: raccoglie parole legate alla creatività e all'immaginazione
+(magic, play, creative), suggerendo un interesse per l'aspetto
+innovativo e ispirazionale dell'IA.
+
+Cluster 2: il più numeroso, contiene termini generici legati a
+tecnologia, futuro e business (future, business, data, technology),
+indicando un focus su applicazioni pratiche e sviluppo del settore.
+
+Cluster 3: include parole connesse a criptovalute e intelligenza
+artificiale (token, memecoin, crypto, unlock), segnalando
+un'intersezione tra AI e finanza decentralizzata.
+
+Cluster 4: presenta riferimenti temporali e editoriali (week's,
+publication, AI-weekly, January 2025), suggerendo una dimensione
+informativa e divulgativa sull'IA.
+
+Nel clustering basato sugli hashtag, sono emersi cinque gruppi distinti:
+
+Cluster 1: hashtag legati al mondo del gaming e della pixel art
+(#pixelart, #games, #indiedev), evidenziando l'uso dell'IA in ambito
+creativo e videoludico.
+
+Cluster 2: il più ampio, comprende termini associati a tecnologia,
+innovazione e ricerca sull'AI (#artificial, #machine, #robotics,
+#datascience).
+
+Cluster 3: raccoglie concetti legati alla mente e alla filosofia dell'IA
+(#mind, #conscious, #philosophy), suggerendo un interesse per gli
+aspetti cognitivi e teorici.
+
+Cluster 4: combina elementi creativi e blockchain (#pixelart, #image,
+#solana), indicando interazioni tra AI, arte e tecnologie
+decentralizzate.
+
+Cluster 5: si concentra su criptovalute e meme coin (#meme, #tokens,
+#memecommunity), sottolineando il legame tra AI e cultura finanziaria
+digitale.
+
+L'analisi evidenzia come i testi dei tweet mostrino una varietà tematica
+più ampia, mentre gli hashtag si concentrano su specifiche aree di
+applicazione dell'intelligenza artificiale, tra cui gaming, filosofia,
+ricerca tecnologica e criptovalute.
+
+#CONCLUSIONI
+
+L'analisi condotta ha permesso di esplorare l'uso dell'intelligenza
+artificiale nelle aziende europee, evidenziando le principali tendenze e
+ambiti di applicazione. Successivamente, attraverso l'analisi testuale
+dei documenti, sono stati individuati i temi ricorrenti e le prospettive
+emergenti. Infine, l'analisi del sentiment e il clustering dei tweet
+hanno confermato il crescente interesse per l'AI, con una discussione
+ampia e diversificata che spazia dalla ricerca tecnologica alle
+implicazioni economiche e sociali.
+
+L'intelligenza artificiale si conferma un tema di grande attualità e in
+continua evoluzione. Il suo utilizzo nelle aziende è destinato a
+crescere, portando innovazioni e nuove sfide. Sarà interessante
+osservare, nei prossimi anni, come le percezioni e le applicazioni
+dell'AI si trasformeranno, sia nel dibattito pubblico che nelle
+strategie aziendali.

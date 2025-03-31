@@ -1,0 +1,41 @@
+---
+title: "PCA"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+date: "2025-01-15"
+---
+#2.7 Analisi in componenti principali
+Il dataset utilizzato in quest'analisi deriva da dati presenti sul sito eurostat riguardanti l'utilizzo dell'IA da parte delle aziende. In particolare, l'indicatore analizzato per ciascuno dei paesi UE considerato è "E_AI_TANY" (indica la percentuale di imprese che utilizzano almeno una delle seguenti applicazioni dell'IA: text mining, speech recognition, written text generation, speech generation, identificazione di oggetti basata su immagini, machine learning, automazione dei processi, movimento fisico delle macchine), i valori all'interno delle celle sono risalenti al 2024 e le variabili rappresentano le attività economiche di riferimento , ossia i settori industriali in cui operano le aziende su cui sono state calcolate le statistiche presenti nelle celle.
+
+Tra le attività economiche sono state eliminate "Electricity&Gas", "Water Supply" e "Real Estate" a causa della mancanza di dati riguardanti una significativa porzione di paesi. Infine, per il settore "Scientific&Technic Activities", non era presente il valore dell'indice per il Portogallo, dunque è stato aggiunto nella cella corrispondente il valore della mediana dei valori della colonna.
+
+
+```{r}
+library(readxl)
+ df <-read_excel("C:/Users/1jaco/OneDrive/Desktop/SMA/Progetto_SMA/Dataset_E_AI_TANY2024_byNACE.xlsx")
+library("FactoMineR") 
+library("factoextra") 
+res.pca <- PCA(df[,2:9], graph = FALSE) 
+
+eig.val <- get_eigenvalue(res.pca) 
+eig.val
+fviz_pca_var(res.pca, col.var = "black")
+library("corrplot") 
+corrplot(res.pca$var$cos2, is.corr=TRUE)
+fviz_pca_var(res.pca, col.var = "cos2", gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), repel = TRUE)
+rownames(res.pca$ind$coord)<-df$Country
+fviz_pca_ind(res.pca, pointsize = "cos2",            
+             pointshape = 21 , fill = "#E7B800",             
+             repel = TRUE)
+
+
+
+```
+
+Il risultato dell'analisi in componenti principali, a partire dalle otto variabili presenti nel dataset, individua due dimensioni che in totale riescono a spiegare circa il 90% della totale variabilità dei dati. In particolare, la prima dimensione risulta particolarmente esplicativa, infatti nella rappresentazione all'interno di un piano dim1-dim2, i diversi paesi risultano quasi completamente collocati in prossimita dell'asse dim1. Alla formazione di tale dimensione contribuiscono in modo rilevante tutte le variabili del dataset, come è possibile notare dal correlogramma rappresentato. 
+
+La rappresentazione grafica del piano con le prime due dimensioni è molto esplicativa in quanto fa emergere che i paesi sono divisi in due principali categorie, tale fatto è supportato soprattutto dai valori della coordinata rappresentante la prima dimensione. E' possibile affermare che per le aziende del gruppo di paesi contraddistinti da maggiori valori della coordinata rappresentata dalla prima dimensione si ha un maggiore sviluppo nell'utilizzo dell'IA, infatti paesi appartenenti a questa categoria, come la Danimarca e l'Olanda hanno una percentuale media di utilizzo dell'IA tra i vari settori maggiore rispetto a quella degli altri paesi . 
+
+Dalla collocazione dei paesi all'interno del piano contenente le prime due dimensioni, la Slovenia rappresenta un'eccezione in quanto la sua coordinata della seconda dimensione è significativamente maggiore di 0; ciò testimonia il fatto che le aziende di tale paese hanno una percentuale di utilizzo dell'IA diversa rispetto a quella degli altri paesi dell'UE nei settori che maggiormente contribuiscono alla formazione della seconda dimensione , che dal correlogramma risultano essere "administrative support" e "transportation storage". 

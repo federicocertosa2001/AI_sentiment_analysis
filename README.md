@@ -1,4 +1,10 @@
 # AI_sentiment_analysis
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Last Commit](https://img.shields.io/github/last-commit/federicocertosa2001/AI_sentiment_analysis)
+![Repo Size](https://img.shields.io/github/repo-size/federicocertosa2001/AI_sentiment_analysis)
+![R Version](https://img.shields.io/badge/R-4.3.1-blue)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+
 
 This project is part of a university course in data analysis and computational linguistics.  
 It focuses on content and sentiment analysis of texts related to Artificial Intelligence (AI), based on:

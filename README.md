@@ -96,7 +96,3 @@ Master's student in Data Analytics
 Tor Vergata University Project – 2025  
 [LinkedIn](https://linkedin.com/in/federico-de-luca-a18a60215)
 ```
-
-
-
-

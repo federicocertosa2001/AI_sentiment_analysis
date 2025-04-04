@@ -1,28 +1,50 @@
+Perfetto Federico! 👇  
+Ecco una **versione migliorata e corretta** del tuo `README.md` con:
+
+- ✅ Badge con username aggiornato (`federicodeluca`)
+- ✅ Aggiunto link al tuo **portfolio GitHub Pages**
+- ✅ Formattazione sistemata (struttura repo, codice, autore)
+- ✅ Firma corretta con **Federico De Luca**
+
+---
+
+## 🔁 **README aggiornato**
+
+```markdown
 # AI_sentiment_analysis
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Last Commit](https://img.shields.io/github/last-commit/federicocertosa2001/AI_sentiment_analysis)
-![Repo Size](https://img.shields.io/github/repo-size/federicocertosa2001/AI_sentiment_analysis)
+![Last Commit](https://img.shields.io/github/last-commit/federicodeluca/AI_sentiment_analysis)
+![Repo Size](https://img.shields.io/github/repo-size/federicodeluca/AI_sentiment_analysis)
 ![R Version](https://img.shields.io/badge/R-4.3.1-blue)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Made with R](https://img.shields.io/badge/Made%20with-R-1f425f.svg?logo=r)
 
-
+---
 
 This project is part of a university course in data analysis and computational linguistics.  
 It focuses on content and sentiment analysis of texts related to Artificial Intelligence (AI), based on:
 
-- **70 news articles** (2019–2025) discussing AI and the job market
+- **70 news articles** (2019–2025) discussing AI and the job market  
 - **841 tweets** collected via scraping on the topic of AI
 
 All scripts are written in **R**, using libraries such as `tidytext`, `quanteda`, `syuzhet`, `vader`, and `rainette`.
+
+🌐 Visit my portfolio: [federicodeluca.github.io](https://federicodeluca.github.io)
 
 ---
 
 ## 📁 Repository Structure
 
-AI_sentiment_analysis/ ├── data/ # Datasets (.xlsx) used for analysis (not uploaded yet) ├── docs/ # Final PDF reports (rendered from RMarkdown) ├── scripts/ # RMarkdown source files ├── LICENSE # MIT License ├── README.md # This file └── .gitignore
-
+```
+AI_sentiment_analysis/
+├── data/           # Datasets (.xlsx) used for analysis 
+├── docs/           # Final PDF reports (rendered from RMarkdown)
+├── scripts/        # RMarkdown source files
+├── LICENSE         # MIT License
+├── README.md       # This file
+└── .gitignore
+```
 
 ---
 
@@ -50,23 +72,44 @@ AI_sentiment_analysis/ ├── data/ # Datasets (.xlsx) used for analysis (not
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/federicocertosa2001/AI_sentiment_analysis.git
-Open the .Rmd files from /scripts/ in RStudio
-Install required R packages:
-install.packages(c("tidyverse", "quanteda", "tidytext", "syuzhet", 
-                   "vader", "rainette", "wordcloud", "reshape2", 
-                   "qdap", "lubridate", "ggplot2", "readxl"))
-Knit the files to HTML or PDF using RStudio
-📊 Technologies & Packages Used
+   git clone https://github.com/federicodeluca/AI_sentiment_analysis.git
+   ```
 
-tidyverse, dplyr, ggplot2, lubridate
-quanteda, tidytext, wordcloud, reshape2
-syuzhet, vader, qdap, rainette, SnowballC
-📄 License
+2. Open the `.Rmd` files from `/scripts/` in **RStudio**
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+3. Install required R packages:
+   ```r
+   install.packages(c("tidyverse", "quanteda", "tidytext", "syuzhet", 
+                      "vader", "rainette", "wordcloud", "reshape2", 
+                      "qdap", "lubridate", "ggplot2", "readxl"))
+   ```
 
-👤 Author
+4. Knit the files to HTML or PDF using RStudio
 
-Federico Certosa Data Analytics Engineer 
-Tor Vergata University project – 2025 
+---
+
+## 📊 Technologies & Packages Used
+
+- `tidyverse`, `dplyr`, `ggplot2`, `lubridate`  
+- `quanteda`, `tidytext`, `wordcloud`, `reshape2`  
+- `syuzhet`, `vader`, `qdap`, `rainette`, `SnowballC`
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+---
+
+## 👤 Author
+
+**Federico De Luca**  
+Master's student in Data Analytics  
+Tor Vergata University – 2025  
+[LinkedIn](https://linkedin.com/in/federico-de-luca-a18a60215)
+```
+
+---
+
+

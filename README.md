@@ -1,15 +1,3 @@
-Perfetto Federico! 👇  
-Ecco una **versione migliorata e corretta** del tuo `README.md` con:
-
-- ✅ Badge con username aggiornato (`federicodeluca`)
-- ✅ Aggiunto link al tuo **portfolio GitHub Pages**
-- ✅ Formattazione sistemata (struttura repo, codice, autore)
-- ✅ Firma corretta con **Federico De Luca**
-
----
-
-## 🔁 **README aggiornato**
-
 ```markdown
 # AI_sentiment_analysis
 

@@ -93,10 +93,10 @@ This project is licensed under the **MIT License**. See the `LICENSE` file for d
 
 **Federico De Luca**  
 Master's student in Data Analytics  
-Tor Vergata University – 2025  
+Tor Vergata University Project – 2025  
 [LinkedIn](https://linkedin.com/in/federico-de-luca-a18a60215)
 ```
 
----
+
 
 
